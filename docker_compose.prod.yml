@@ -1,0 +1,29 @@
+version: "3"
+services:
+  recipe_api:
+    image: $DOCKERHUB_UNAME/assessement_5-prod:$NEW_VERSION
+    environment:
+      - SECRET_KEY=$SECRET_KEY
+      - DEBUG=$DEBUG
+      - DATABASE_NAME=$POSTGRES_DB
+      - DATABASE_USER=$POSTGRES_USER
+      - DATABASE_PASSWORD=$POSTGRES_PASSWORD
+    depends_on:
+      - recipe_db
+  nginx:
+    image: $DOCKERHUB_UNAME/webserver-prod:$NEW_VERSION
+    restart: always
+    ports:
+      - "80:80"
+  recipe_db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=$POSTGRES_DB
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+
+volumes:
+  postgres_data:
+    
