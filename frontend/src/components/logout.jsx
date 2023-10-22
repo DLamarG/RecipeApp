@@ -1,17 +1,25 @@
 import React from 'react';
 import { Navigate } from "react-router-dom";
+import { useState } from 'react';
 
 
 function Logout() {
+  const [shouldRedirect, setShouldRedirect] = useState(false)
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    const userToken = localStorage.getItem("token");
 
-    window.location.href = 'http://localhost:5173/#/chef/login';
-
-    // return <Navigate to='/chef/login'/>;
+    if(userToken){
+      alert(`Oops something went wrong!`);
+    } else {
+      setShouldRedirect(true)
+    }
   };
 
+  if(shouldRedirect){
+    return <Navigate to='/chef/login'/>
+  } else {
   return (
     <div className='container mt-4'>
       <div className="row">
@@ -26,6 +34,7 @@ function Logout() {
       </div>
     </div>
   );
+  }
 }
 
 export default Logout;

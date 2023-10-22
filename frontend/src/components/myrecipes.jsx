@@ -9,7 +9,7 @@ import { basicFetch } from '../api';
 function MyRecipes(){
 
   const [Recipes, setRecipes] = useState([]);
-
+  const base_url = import.meta.env.VITE_BASE_URL
      useEffect(() => {
        const getRecipes = async () => {
 
@@ -21,7 +21,7 @@ function MyRecipes(){
                 "Authorization": `Token ${userToken}`
               },
             }
-            const body = await basicFetch("http://localhost:8000/api/v3/myrecipes/", payload)
+            const body = await basicFetch(`http://${base_url}/api/v3/myrecipes/`, payload)
             setRecipes(body)
             console.log(body)
             return body

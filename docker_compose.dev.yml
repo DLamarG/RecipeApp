@@ -5,7 +5,7 @@
 
 version: "3"
 services:
-  recipe_api:
+  recipe-api:
     build: ./assessement_5
     ports:
       - "8000:8000"

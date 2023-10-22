@@ -1,6 +1,6 @@
 version: "3"
 services:
-  recipe_api:
+  recipe-api:
     image: $DOCKERHUB_UNAME/assessement_5-prod:$NEW_VERSION
     environment:
       - SECRET_KEY=$SECRET_KEY

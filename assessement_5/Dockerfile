@@ -6,4 +6,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 
-CMD gunicorn --bund 0.0.0.0:8000 --workers 3 food_app.wsgi.application
+CMD gunicorn --bind 0.0.0.0:8000 --workers 3 food_app.wsgi:application
