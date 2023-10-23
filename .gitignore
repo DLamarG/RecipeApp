@@ -4,3 +4,4 @@ __pycache__
 node_modules
 env_virtual
 .DS_Store
+RecipeAppKey.pem
