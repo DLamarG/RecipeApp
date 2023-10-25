@@ -8,6 +8,8 @@ export DEBUG=True
 export POSTGRES_DB=recipe_app_db
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=postgres
+export AWS_ACCESS_KEY_ID=$1
+export AWS_SECRET_ACCESS_KEY=$2
 
 docker-compose -f docker_compose.dev.yml up -d --build
 

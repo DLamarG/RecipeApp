@@ -33,7 +33,7 @@ function RecipeDetailBB(){
         <section className="container mt-4">
             <div className="row">
             <div className='col-4'>
-               <img src={logo} className="img-thumbnail" alt="..."/>
+               <img src={recipeData.picture ? recipeData.picture : logo} className="img-thumbnail" alt="..."/>
             </div>
             <div className="col-8">
                 <h3> {recipeData.title} </h3>

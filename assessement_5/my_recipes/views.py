@@ -27,13 +27,14 @@ class MyRecipeAPIView(APIView):
     def post(self, request):
         title = request.data.get('title')
         ingrediants = request.data.get('ingrediants')
+        picture = request.data.get('picture')
         user = request.user
     
 
         try:
             profile = UserAccount.objects.get(user=user)
             if not profile.my_recipes.filter(title=title).exists():
-                recipe = RecipeModel.objects.create(title=title, ingrediants=ingrediants)
+                recipe = RecipeModel.objects.create(title=title, ingrediants=ingrediants, picture=picture)
                 profile.my_recipes.add(recipe)
                 return Response({'message': 'Recipe added.'}, status=status.HTTP_200_OK)
             else:

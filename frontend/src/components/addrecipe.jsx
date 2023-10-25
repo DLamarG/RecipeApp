@@ -1,34 +1,51 @@
 import React from 'react';
 import { useState } from 'react';
 import { addRecipe } from '../api';
-
+import { Navigate } from 'react-router-dom';
 
 function AddRecipe(){
 
     const [title, setTitle] = useState('');
-    const [ingredients, setIngrediants] = useState('');
+    const [ingrediants, setIngredients] = useState('');
+    const [picture, setRecipePhoto] = useState();
     const [isButtonClicked, setIsButtonClicked] = useState(false)
+    const [shouldRedirect, setShouldRedirect] = useState(false)
+
+
 
     const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
   const handleIngredientsChange = (e) => {
-    setIngrediants(e.target.value);
+    setIngredients(e.target.value);
+  };
+
+  const handlePhotoChange = (e) => {
+    setRecipePhoto(e.target.files[0]);
   };
 
   const handleClick = () => {
     setIsButtonClicked(!isButtonClicked)
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if(isButtonClicked){
-        addRecipe({"title":title,"ingrediants":ingredients})
-        setTitle('');
-        setIngrediants('');
+        const resp = await addRecipe({"title":title,"ingrediants":ingrediants,"picture":picture})
+        setIngredients('');
+        setRecipePhoto();
+        setTitle('')
+        console.log(resp)
+        if(resp.success !== 'Your new recipe has been added!'){
+          alert(`Oops something went wrong!`);
+        }else{
+         setShouldRedirect(true)
+        }
     }
    };
-
+   if (shouldRedirect) {
+    return <Navigate to="/home" />
+   } else {
     return (
         <div className='container mt-4'>
             <div className="row">
@@ -56,10 +73,20 @@ function AddRecipe(){
                                 className="form-control" 
                                 id="ingredients" 
                                 name='ingredients'
-                                value={ingredients}
+                                value={ingrediants}
                                 onChange={handleIngredientsChange}
                                 required
                                 />
+                            </div>
+                            <div className="mb-3">
+                              <label name="picture" id="customFile" className="form-label">Upload a Photo</label>
+                              <input 
+                              className="form-control" 
+                              name="picture" 
+                              id="customFile"
+                              type="file"
+                              onChange={handlePhotoChange}
+                              />
                             </div>
                             <button type="submit" className="btn btn-primary" onClick={handleClick}>Submit</button>
                         </form>
@@ -69,6 +96,7 @@ function AddRecipe(){
             </div>
         </div>
     )
+   }
 };
 
 export default AddRecipe;

@@ -37,14 +37,16 @@ export async function basicFetch(url, payload) {
   export async function addRecipe(context) {
     const base_url = import.meta.env.VITE_BASE_URL
     const userToken = localStorage.getItem("token")
+    let formData = new FormData()
+    formData.append("title", context.title)
+    formData.append("ingrediants", context.ingrediants)
+    formData.append("picture", context.picture)
     const payload = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         "Authorization": `Token ${userToken}`
       },
-      body: JSON.stringify(context)
-      
+      body: formData
     }
     const body = await basicFetch(`http://${base_url}/api/v3/myrecipes/`, payload)
     console.log(body)
