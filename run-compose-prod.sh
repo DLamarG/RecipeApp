@@ -19,5 +19,5 @@ docker-compose -f docker_compose.prod.yml up -d
 
 # make sure the postgres container is ready, then run migrations
 sleep 10 
-docker exec ec2-user-api-1 python /src/manage.py makemigrations 
-docker exec ec2-user-api-1 python /src/manage.py migrate
+docker exec ec2-user-recipe-api-1 python /src/manage.py makemigrations 
+docker exec ec2-user-recipe-api-1 python /src/manage.py migrate
