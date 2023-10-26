@@ -44,7 +44,7 @@ function Login(){
     return (
         <div className='container mt-4'>
             <div className="row">
-                <div className="col-md-8 col-12 offset-2">
+                <div className="col-md-4 col-6 offset-4">
                 <div className="card">
                   <h4 className="card-header">Login</h4>
                   <div className="card-body">
