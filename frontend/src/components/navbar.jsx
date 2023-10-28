@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import logo from './logo2.png';
 
 function Navbar(){
   return (
@@ -10,7 +10,7 @@ function Navbar(){
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <Link className="navbar-brand" to={"/home"}><p><span className=" text-warning">B</span>ougie <span className=" text-warning">B</span>elly</p></Link>
+          <Link className="navbar-brand" to={"/home"}><img src={logo} width={90} height={90} alt="Brand Logo" /></Link>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to={"/home"}>Home</Link>

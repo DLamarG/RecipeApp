@@ -4,7 +4,7 @@ from rest_framework import status
 from user_account.models import UserAccount
 from recipes.models import RecipeModel
 from recipes.serializers import RecipeModelSerializer
-
+from rest_framework import generics
 
 class MyRecipeAPIView(APIView):
     def get(self, request):
@@ -47,6 +47,7 @@ class MyRecipeAPIView(APIView):
 
     def delete(self, request, recipe_id):
         user = request.user
+        recipe_id = recipe_id
 
         try:
             profile = UserAccount.objects.get(user=user)
@@ -64,4 +65,8 @@ class MyRecipeAPIView(APIView):
         except UserAccount.DoesNotExist:
             return Response({'message': 'User profile not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-# Create your views here.
+class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
+        queryset=RecipeModel.objects.all()
+        serializer_class=RecipeModelSerializer
+
+    
