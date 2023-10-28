@@ -1,9 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-
 //Assets
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 //Website
 import Navbar from './components/navbar';
@@ -20,7 +18,6 @@ import ProtectedRoutes from './protectedRoutes';
 import Logout from './components/logout';
 
 function App() {
-
   return (
     <>
     <HashRouter>
@@ -40,9 +37,7 @@ function App() {
       </Routes>
       <Footer />
     </HashRouter>
-      
     </>
   )
 }
-
 export default App

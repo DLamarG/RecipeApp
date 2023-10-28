@@ -1,0 +1,71 @@
+import React from 'react';
+import logo from './logo.svg';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
+
+
+
+function SingleRecipeList(props){
+    const [shouldRedirect, setShouldRedirect] = useState(false)
+
+   const handleDelete = async () => {
+
+   async function deleteRecipe() {
+        const base_url = import.meta.env.VITE_BASE_URL
+        const userToken = localStorage.getItem("token")
+        const payload = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${userToken}`
+          },
+        }
+        const body = await basicFetch(`http://${base_url}/api/v3/myrecipes/${props.recipe.recipe_id}`, payload)
+        console.log(body)
+        if(body.status === 204){
+            setShouldRedirect(true)
+            alert('Recipe succesfully deleted!')
+        } else {
+            setShouldRedirect(false)
+        }
+      }
+   }
+   
+   if (shouldRedirect) {
+    return <Navigate to="/chef/my-recipes" />
+   }else{
+    return (
+        <div className='col-12 col-md-3 mb-4'>
+            <div className="card shadow">
+            <Link to={`/recipe/${props.recipe.title}/${props.recipe.recipe_id}`}>
+                <img src={props.recipe.picture ? props.recipe.picture : logo} 
+                className="card-img-top" 
+                width="100" 
+                height="300"
+                ></img>
+            </Link>
+                <div className="card-body">
+                <h6 className="card-title">
+                    <Link to={`/recipe/${props.recipe.title}/${props.recipe.recipe_id}`}>{props.recipe.title}
+                </Link></h6>
+            </div>
+            <div className='card-footer'>
+                <button title="Delete Recipe" 
+                className='btn btn-danger btn-sm'
+                onClick={handleDelete}
+                >
+                    <i className="fa-solid fa-trash"></i></button>
+                <Link to={`/recipe/${props.recipe.title}/${props.recipe.recipe_id}`}>
+                    <button title="Recipe Details" className='btn btn-primary btn-sm ms-1'>
+                        <i className="fa-solid fa-circle-info"></i>
+                        </button>
+                </Link>
+            </div>
+            </div>
+        </div>
+    )
+   }
+};
+
+export default SingleRecipeList;
