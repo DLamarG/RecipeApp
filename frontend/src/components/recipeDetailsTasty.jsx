@@ -39,7 +39,6 @@ function RecipeDetailTasty(){
             <div className="col-8">
                 <h3> {recipeData.name} </h3>
                 <p> {recipeData.description} </p>
-                <h6>Calories:{recipeData.nutrition.calories}, Carbs:{recipeData.nutrition.carbohydrates}, Sugar:{recipeData.nutrition.sugar}</h6>
                 <p className="mt-3">
                     <button title="Add to wishlist" className='btn btn-danger btn-sm ms-1'><i className="fa fa-heart fa-1.5x">Add to Favorites</i></button>
                 </p>
