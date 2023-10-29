@@ -1,7 +1,15 @@
 export async function basicFetch(url, payload) {
     const res = await fetch(url, payload)
     const body = await res.json()
+    console.log(body)
     return body
+  }
+
+
+  export async function basicFetch2(url, payload) {
+    const res = await fetch(url, payload)
+    console.log(res)
+    return res
   }
   
   

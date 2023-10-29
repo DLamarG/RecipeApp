@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleRecipe from './singlerecipe';
 import { useState, useEffect } from 'react';
 import { basicFetch } from '../api';
-import { SingleRecipeList } from './mysinglerecipe';
-
+import SingleRecipeList from './mysinglerecipe'
 
 
 function MyRecipes(){
@@ -37,7 +36,7 @@ function MyRecipes(){
           <h3 className='mb-4'> My Recipes <Link to='/home' className='float-end btn btn-sm btn-dark m-2'>View All Recipes<i className="fa-solid fa-arrow-right-long m-1"></i></Link></h3>
           <div className='row mb-4'>
           {
-             Recipes.map((recipe) => <SingleRecipe key={recipe.recipe_id} recipe={recipe}/>)
+             Recipes.map((recipe) => <SingleRecipeList key={recipe.recipe_id} recipe={recipe}/>)
             }
           </div>
           </div>
