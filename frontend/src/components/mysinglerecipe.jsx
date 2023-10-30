@@ -15,7 +15,6 @@ function SingleRecipeList(props){
         handleDelete();
       };
 
-
    const handleDelete = async () => {
         const base_url = import.meta.env.VITE_BASE_URL
         const userToken = localStorage.getItem("token")
@@ -36,7 +35,6 @@ function SingleRecipeList(props){
       }
    }
 
-   
    if (shouldRedirect) {
     return <Navigate to="/home" />
    }else{
