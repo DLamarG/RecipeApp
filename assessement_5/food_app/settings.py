@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'food_app.wsgi.application'
 DATABASES = {
     "default": {
     "ENGINE": "django.db.backends.postgresql",
-    "NAME": os.getenv("DATABASE_NAME", "recipe_app_db"),
+    "NAME": "recipe_app_db",
     "USER": os.getenv("DATABASE_USER", "postgres"),
     "PASSWORD": os.getenv("DATABASE_PASSWORD", "postgres"),
-    "HOST": "recipe_db",
-    "PORT": 5432,
+    "HOST": "localhost",
+    "PORT": 5454,
     }
 }
 
