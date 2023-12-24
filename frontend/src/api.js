@@ -15,6 +15,7 @@ export async function basicFetch(url, payload) {
   
   export async function register(context) {
     const base_url = import.meta.env.VITE_BASE_URL
+    const local_url = '127.0.0.1:8000'
     const payload = {
       method: "POST",
       headers: {
@@ -22,13 +23,14 @@ export async function basicFetch(url, payload) {
         },
         body: JSON.stringify(context)
       }
-      const body = await basicFetch(`http://${base_url}/api/v1/signup/`,payload)
+      const body = await basicFetch(`http://${local_url}/api/v1/signup/`,payload)
       console.log(body, "API CALL")
       return body
     }
     
   export async function login(context) {
     const base_url = import.meta.env.VITE_BASE_URL
+    const local_url = '127.0.0.1:8000'
     const payload = {
       method: "POST",
       headers: {
@@ -36,7 +38,7 @@ export async function basicFetch(url, payload) {
       },
       body: JSON.stringify(context)
     }
-    const body = await basicFetch(`http://${base_url}/api/v1/get-token/`, payload)
+    const body = await basicFetch(`http://${local_url}/api/v1/get-token/`, payload)
     localStorage.setItem("token", body.token)
     return body.token
   }
@@ -44,6 +46,7 @@ export async function basicFetch(url, payload) {
 
   export async function addRecipe(context) {
     const base_url = import.meta.env.VITE_BASE_URL
+    const local_url = '127.0.0.1:8000'
     const userToken = localStorage.getItem("token")
     let formData = new FormData()
     formData.append("title", context.title)
@@ -56,7 +59,7 @@ export async function basicFetch(url, payload) {
       },
       body: formData
     }
-    const body = await basicFetch(`http://${base_url}/api/v3/myrecipes/`, payload)
+    const body = await basicFetch(`http://${local_url}/api/v3/myrecipes/`, payload)
     console.log(body)
     return {"success": "Your new recipe has been added!"}
   }
@@ -64,6 +67,7 @@ export async function basicFetch(url, payload) {
 
   export async function getRecipes(context) {
     const base_url = import.meta.env.VITE_BASE_URL
+    const local_url = '127.0.0.1:8000'
     const userToken = localStorage.getItem("token")
     const payload = {
       method: "GET",
@@ -72,7 +76,7 @@ export async function basicFetch(url, payload) {
         "Authorization": `Token ${userToken}`
       },
     }
-    const body = await basicFetch(`http://${base_url}/api/v3/myrecipes/`, payload)
+    const body = await basicFetch(`http://${local_url}/api/v3/myrecipes/`, payload)
     console.log(body)
     return body
   }
