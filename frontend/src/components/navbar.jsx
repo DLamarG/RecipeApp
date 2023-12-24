@@ -25,6 +25,7 @@ function Navbar(){
                       <ul className="dropdown-menu">
                         <li><Link className="dropdown-item" to="/chef/add-recipe">Add Recipe</Link></li>
                         <li><Link className="dropdown-item" to="/chef/my-recipes">My Recipes</Link></li>
+                        <li><Link className="dropdown-item" to="/chef/my-profilepage">My Profile</Link></li>
                         <li><Link className="dropdown-item" to="/chef/logout">Logout</Link></li>
                       </ul>
                     </li>

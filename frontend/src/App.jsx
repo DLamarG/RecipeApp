@@ -16,6 +16,7 @@ import RecipeDetailBB from './components/recipeDetailsBB';
 import RecipeDetailTasty from './components/recipeDetailsTasty';
 import ProtectedRoutes from './protectedRoutes';
 import Logout from './components/logout';
+import profilePage from './components/profilePage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path='/chef/more-recipes' element={<RecipeSearch />} />
             <Route path='/chef/add-recipe' element={<AddRecipe />} />
             <Route path='/chef/my-recipes' element={<MyRecipes />} />
+            <Route path='/chef/my-profilepage' element={<profilePage />} />
             <Route path='/recipe/:recipe_slug/:recipe_id' element={<RecipeDetailBB />} />
             <Route path='/tastyrecipe/:recipe_slug/:recipe_id' element={<RecipeDetailTasty />} />
           </Route>

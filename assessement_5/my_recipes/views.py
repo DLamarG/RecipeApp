@@ -14,6 +14,7 @@ class MyRecipeAPIView(APIView):
             profile = UserAccount.objects.get(user=user)
             my_recipe_list = profile.my_recipes.all()  # Retrieve the user's cars from garage
 
+     
             # Serialize the watchlist movies data
             serializer = RecipeModelSerializer(my_recipe_list, many=True)
 
